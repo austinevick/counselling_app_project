@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "369176092423",
+    "project_id": "counselling-and-therapy-app",
+    "storage_bucket": "counselling-and-therapy-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369176092423:android:8e95ee5169a47b6b5c2fa2",
+        "android_client_info": {
+          "package_name": "com.example.counselling_app_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369176092423-iv2qe1d1tfs9a7bqml0c082qfp635ric.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.counselling_app_project",
+            "certificate_hash": "727c47c9da66726722655de1f0af9fa8a561cc15"
+          }
+        },
+        {
+          "client_id": "369176092423-qkn0r5lj5fj7ndujk4jqtaq5ojtfceuv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlSZbUCZlu0247sOoMT8cFW5giEaxOMJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369176092423-qkn0r5lj5fj7ndujk4jqtaq5ojtfceuv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
