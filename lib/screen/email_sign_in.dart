@@ -29,11 +29,22 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
             child: Column(
               children: [
                 TextFormField(
+                  textInputAction: TextInputAction.next,
+                  validator: (value) => !value.contains('@')
+                      ? 'Please provide a valid email'
+                      : null,
+                  controller: emailController,
                   style: TextStyle(fontSize: 22),
                   decoration: InputDecoration(hintText: 'Email'),
                 ),
                 TextFormField(
+                  textInputAction: TextInputAction.done,
+                  controller: passwordController,
                   style: TextStyle(fontSize: 22),
+                  obscureText: true,
+                  validator: (value) => value.length < 6
+                      ? 'Character must be at least 6 length'
+                      : null,
                   decoration: InputDecoration(hintText: 'Password'),
                 ),
                 SizedBox(
@@ -49,6 +60,7 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
                         AuthenticationService.createUserWithEmailAndPassword(
                             emailController.text, passwordController.text);
                       }
+                      Navigator.of(context).pop();
                     }),
                 FlatButton(
                     onPressed: () {
