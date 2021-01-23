@@ -1,5 +1,3 @@
-import 'package:counselling_app_project/screen/home_screen.dart';
-import 'package:counselling_app_project/screen/login_screen.dart';
 import 'package:counselling_app_project/screen/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationService {
@@ -10,9 +12,26 @@ class AuthenticationService {
   ///*******************************************///
 
   static Future<User> signInWithEmailAndPassword(
-      String email, String password) async {
-    final userCredential = await _auth.signInWithCredential(
-        EmailAuthProvider.credential(email: email, password: password));
+      String email, String password, BuildContext context) async {
+    UserCredential userCredential;
+    try {
+      userCredential = await _auth.signInWithCredential(
+          EmailAuthProvider.credential(email: email, password: password));
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+                title: Text('Sign in failed'),
+                content: Text(e.message),
+                actions: [
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text('OK'),
+                  )
+                ],
+              ));
+    }
     return userCredential.user;
   }
 

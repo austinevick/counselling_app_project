@@ -12,12 +12,26 @@ class EmailSignInPage extends StatefulWidget {
 class _EmailSignInPageState extends State<EmailSignInPage> {
   final emailController = new TextEditingController();
   final passwordController = new TextEditingController();
+  final emailFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+
   EmailSignInFormType formType = EmailSignInFormType.signIn;
   String btnText() =>
       formType == EmailSignInFormType.signIn ? 'LOGIN' : 'REGISTER';
   String secondaryText() => formType == EmailSignInFormType.signIn
       ? 'Need an account? Register'
       : 'Have an account? Login';
+  submit() {
+    if (formType == EmailSignInFormType.signIn) {
+      AuthenticationService.signInWithEmailAndPassword(
+          emailController.text, passwordController.text, context);
+    } else {
+      AuthenticationService.createUserWithEmailAndPassword(
+          emailController.text, passwordController.text);
+    }
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,15 +43,23 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
             child: Column(
               children: [
                 TextFormField(
+                  onEditingComplete: () {
+                    FocusScope.of(context).requestFocus(passwordFocusNode);
+                  },
+                  focusNode: emailFocusNode,
                   textInputAction: TextInputAction.next,
                   validator: (value) => !value.contains('@')
                       ? 'Please provide a valid email'
                       : null,
                   controller: emailController,
+                  onChanged: (email) {
+                    setState(() {});
+                  },
                   style: TextStyle(fontSize: 22),
                   decoration: InputDecoration(hintText: 'Email'),
                 ),
                 TextFormField(
+                  focusNode: passwordFocusNode,
                   textInputAction: TextInputAction.done,
                   controller: passwordController,
                   style: TextStyle(fontSize: 22),
@@ -46,22 +68,19 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
                       ? 'Character must be at least 6 length'
                       : null,
                   decoration: InputDecoration(hintText: 'Password'),
+                  onChanged: (password) {
+                    setState(() {});
+                  },
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 LoginButtons(
                     text: btnText(),
-                    onPressed: () {
-                      if (formType == EmailSignInFormType.signIn) {
-                        AuthenticationService.signInWithEmailAndPassword(
-                            emailController.text, passwordController.text);
-                      } else {
-                        AuthenticationService.createUserWithEmailAndPassword(
-                            emailController.text, passwordController.text);
-                      }
-                      Navigator.of(context).pop();
-                    }),
+                    onPressed: emailController.text.isNotEmpty &&
+                            passwordController.text.isNotEmpty
+                        ? () => submit()
+                        : null),
                 FlatButton(
                     onPressed: () {
                       setState(() {

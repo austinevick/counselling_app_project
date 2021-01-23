@@ -6,6 +6,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(AuthenticationService.currentUser.email),
         actions: [
           FlatButton(
             child: Text('Sign Out'),
