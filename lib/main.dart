@@ -1,4 +1,4 @@
-import 'package:counselling_app_project/screen/welcome_screen.dart';
+import 'package:counselling_app_project/screen/authentication_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Counsel and therapy',
-        theme: ThemeData.dark(),
-        home: WelcomeScreen());
+        theme: ThemeData(
+            primaryColor: Colors.green,
+            appBarTheme: AppBarTheme(color: Colors.green)),
+        home: AuthenticationScreen());
   }
 }

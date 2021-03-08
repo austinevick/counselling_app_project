@@ -1,8 +1,11 @@
 import 'package:counselling_app_project/model/job.dart';
 import 'package:counselling_app_project/services/authentication.dart';
 import 'package:counselling_app_project/services/firestore_service.dart';
+import 'package:counselling_app_project/widget/search_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+// UI url: https://www.behance.net/gallery/112706811/Dentist-Doctor-Consultant-Mobile-App-Ui-Kit?tracking_source=search_projects_recommended%7Cappointment%20booking
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -10,7 +13,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.transparent,
           actions: [
             FlatButton(
               child: Text('Sign Out'),
@@ -18,13 +20,24 @@ class HomeScreen extends StatelessWidget {
             )
           ],
         ),
-        body: Container(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await FirebaseDatabase.addItems(
-                Job(name: 'Engineer', ratePerHour: 24));
-          },
-          child: Icon(Icons.add),
+        body: Column(
+          children: [
+            SearchBarWidget(),
+            Text('Therapists'),
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Container(
+                      child: Text('hgf'),
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
         ));
   }
 
