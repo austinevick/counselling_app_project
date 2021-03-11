@@ -40,21 +40,4 @@ class HomeScreen extends StatelessWidget {
           ],
         ));
   }
-
-  addJob(BuildContext context) async {
-    try {
-      await FirebaseDatabase.addItems(Job(name: 'Engineer', ratePerHour: 24));
-    } on FirebaseException catch (e) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text(
-                'Operation failed',
-              ),
-              content: Text(e.message),
-            );
-          });
-    }
-  }
 }

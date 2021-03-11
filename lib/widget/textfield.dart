@@ -44,7 +44,6 @@ class TextInputField extends StatelessWidget {
         autofillHints: autofillHints,
         onTap: onTap,
         readOnly: readOnly,
-        textCapitalization: TextCapitalization.words,
         keyboardType: textInputType,
         maxLines: maxLines,
         cursorColor: Colors.black,
