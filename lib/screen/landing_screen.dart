@@ -11,6 +11,15 @@ class LandingScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text(
+            'COUNSELLO',
+            style: TextStyle(fontSize: 35),
+          ),
+          Image.asset(
+            'images/img1.png',
+            height: 300,
+            width: 300,
+          ),
           LoginButtons(
             onPressed: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (ctx) => SignInScreen())),
