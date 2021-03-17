@@ -6,6 +6,7 @@ import 'package:counselling_app_project/widget/login_button.dart';
 import 'package:counselling_app_project/widget/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -17,14 +18,20 @@ class _SignupScreenState extends State<SignupScreen> {
   final formKey = new GlobalKey<FormState>();
   final emailController = new TextEditingController();
   final passwordController = new TextEditingController();
+  final confirmPasswordController = new TextEditingController();
   final phoneController = new TextEditingController();
   final nameController = new TextEditingController();
   final emailFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
+  final confirmPasswordFocusNode = FocusNode();
   final phoneFocusNode = FocusNode();
   User user;
   @override
   void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    phoneController.dispose();
+    nameController.dispose();
     super.dispose();
   }
 
@@ -48,7 +55,7 @@ class _SignupScreenState extends State<SignupScreen> {
               prefixIcon: Icon(Icons.person_outline),
               hintText: 'Enter your full name',
               validator: (value) =>
-                  value.isEmpty ? 'Please enter your name' : null,
+                  value.isEmpty ? 'Field must not be empty' : null,
             ),
             TextInputField(
               onEditingComplete: () {
@@ -76,13 +83,27 @@ class _SignupScreenState extends State<SignupScreen> {
               textInputType: TextInputType.phone,
             ),
             TextInputField(
+              onEditingComplete: () {
+                FocusScope.of(context).requestFocus(confirmPasswordFocusNode);
+              },
               obscureText: true,
-              focusNode: passwordFocusNode,
+              focusNode: confirmPasswordFocusNode,
               controller: passwordController,
               prefixIcon: Icon(Icons.lock_outline),
               hintText: 'Enter your password',
               validator: (value) =>
                   value.length < 6 ? 'Character must be 6 length' : null,
+            ),
+            TextInputField(
+              obscureText: true,
+              focusNode: passwordFocusNode,
+              controller: confirmPasswordController,
+              prefixIcon: Icon(Icons.lock_outline),
+              hintText: 'Confirm your password',
+              validator: (value) =>
+                  value.isEmpty || value != passwordController.text
+                      ? 'Password does not match'
+                      : null,
             ),
             SizedBox(
               height: 20,
@@ -100,6 +121,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   submit() async {
     final dialog = ProgressDialog(context);
+    dialog.style(
+        message: 'Please wait...', child: Center(child: SpinKitDoubleBounce()));
     try {
       if (formKey.currentState.validate()) {
         dialog.show();

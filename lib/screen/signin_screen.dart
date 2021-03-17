@@ -4,6 +4,7 @@ import 'package:counselling_app_project/widget/login_button.dart';
 import 'package:counselling_app_project/widget/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -21,6 +22,8 @@ class _SignInScreenState extends State<SignInScreen> {
   User user;
   @override
   void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -74,6 +77,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   submit() async {
     final dialog = ProgressDialog(context);
+    dialog.style(
+        message: 'Please wait...', child: Center(child: SpinKitDoubleBounce()));
     try {
       if (formKey.currentState.validate()) {
         dialog.show();
