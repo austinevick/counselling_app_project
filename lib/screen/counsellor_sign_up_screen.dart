@@ -14,16 +14,28 @@ class _CounsellorSignUpScreenState extends State<CounsellorSignUpScreen> {
         title: Text('Registration form'),
       ),
       body: Container(
-        child: Form(
-            child: Column(
-          children: [
-            TextInputField(),
-            TextInputField(),
-            TextInputField(),
-            TextInputField(),
-            TextInputField(),
-          ],
-        )),
+        child: SingleChildScrollView(
+          child: Form(
+              child: Column(
+            children: [
+              TextInputField(
+                hintText: 'Full name',
+              ),
+              TextInputField(
+                hintText: 'Email',
+              ),
+              TextInputField(
+                hintText: 'Phone number',
+              ),
+              TextInputField(
+                hintText: 'Nationality',
+              ),
+              TextInputField(
+                hintText: '',
+              ),
+            ],
+          )),
+        ),
       ),
     );
   }
