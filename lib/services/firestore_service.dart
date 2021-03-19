@@ -7,15 +7,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 class FirestoreDatabase {
   static User user = AuthenticationService.currentUser;
 
-  static Future<void> addItems(Job itemData) {
-    final path = 'users/${user.uid}/jobs/job_abc';
-    final docRef = FirebaseFirestore.instance.doc(path);
-    return docRef.set(itemData.toMap());
-  }
-
   static saveUsersData(Users userData) async {
     final path = 'Users';
     final ref = FirebaseFirestore.instance.collection(path);
     await ref.doc(user.uid).set(userData.toMap());
+  }
+
+  static Stream<List<Users>> fetchUsers() {
+    final userRef = FirebaseFirestore.instance.collection('users');
+    return userRef.snapshots().map(
+        (event) => event.docs.map((e) => Users.fromMap(e.data())).toList());
   }
 }

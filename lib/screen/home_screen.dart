@@ -1,8 +1,5 @@
-import 'package:counselling_app_project/model/job.dart';
 import 'package:counselling_app_project/services/authentication.dart';
-import 'package:counselling_app_project/services/firestore_service.dart';
 import 'package:counselling_app_project/widget/search_bar.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // UI url: https://www.behance.net/gallery/112706811/Dentist-Doctor-Consultant-Mobile-App-Ui-Kit?tracking_source=search_projects_recommended%7Cappointment%20booking

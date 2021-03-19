@@ -5,6 +5,7 @@ import 'package:counselling_app_project/widget/exception_error_widget.dart';
 import 'package:counselling_app_project/widget/login_button.dart';
 import 'package:counselling_app_project/widget/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:progress_dialog/progress_dialog.dart';
@@ -42,78 +43,85 @@ class _SignupScreenState extends State<SignupScreen> {
         centerTitle: true,
         title: Text('Create Account'),
       ),
-      body: Form(
-        key: formKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextInputField(
-              onEditingComplete: () {
-                FocusScope.of(context).requestFocus(emailFocusNode);
-              },
-              controller: nameController,
-              prefixIcon: Icon(Icons.person_outline),
-              hintText: 'Enter your full name',
-              validator: (value) =>
-                  value.isEmpty ? 'Field must not be empty' : null,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(),
+                TextInputField(
+                  onEditingComplete: () {
+                    FocusScope.of(context).requestFocus(emailFocusNode);
+                  },
+                  controller: nameController,
+                  prefixIcon: Icon(Icons.person_outline),
+                  hintText: 'Enter your full name',
+                  validator: (value) =>
+                      value.isEmpty ? 'Field must not be empty' : null,
+                ),
+                TextInputField(
+                  onEditingComplete: () {
+                    FocusScope.of(context).requestFocus(phoneFocusNode);
+                  },
+                  focusNode: emailFocusNode,
+                  textInputType: TextInputType.emailAddress,
+                  controller: emailController,
+                  prefixIcon: Icon(Icons.email_outlined),
+                  hintText: 'Enter your email',
+                  validator: (value) =>
+                      !value.contains('@') && !value.contains('.')
+                          ? 'Please enter a valid email'
+                          : null,
+                ),
+                TextInputField(
+                  onEditingComplete: () {
+                    FocusScope.of(context).requestFocus(passwordFocusNode);
+                  },
+                  focusNode: phoneFocusNode,
+                  prefixIcon: Icon(Icons.phone_outlined),
+                  validator: (value) => validateMobile(value),
+                  autofillHints: [AutofillHints.telephoneNumber],
+                  controller: phoneController,
+                  hintText: 'Phone Number',
+                  textInputType: TextInputType.phone,
+                ),
+                TextInputField(
+                  onEditingComplete: () {
+                    FocusScope.of(context)
+                        .requestFocus(confirmPasswordFocusNode);
+                  },
+                  obscureText: true,
+                  focusNode: confirmPasswordFocusNode,
+                  controller: passwordController,
+                  prefixIcon: Icon(Icons.lock_outline),
+                  hintText: 'Enter your password',
+                  validator: (value) =>
+                      value.length < 6 ? 'Character must be 6 length' : null,
+                ),
+                TextInputField(
+                  obscureText: true,
+                  focusNode: passwordFocusNode,
+                  controller: confirmPasswordController,
+                  prefixIcon: Icon(Icons.lock_outline),
+                  hintText: 'Confirm your password',
+                  validator: (value) =>
+                      value.isEmpty || value != passwordController.text
+                          ? 'Password does not match'
+                          : null,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                LoginButtons(
+                  onPressed: () => submit(),
+                  text: 'SIGN UP',
+                ),
+                // Text('Or Continue with'),
+              ],
             ),
-            TextInputField(
-              onEditingComplete: () {
-                FocusScope.of(context).requestFocus(phoneFocusNode);
-              },
-              focusNode: emailFocusNode,
-              textInputType: TextInputType.emailAddress,
-              controller: emailController,
-              prefixIcon: Icon(Icons.email_outlined),
-              hintText: 'Enter your email',
-              validator: (value) => !value.contains('@') && !value.contains('.')
-                  ? 'Please enter a valid email'
-                  : null,
-            ),
-            TextInputField(
-              onEditingComplete: () {
-                FocusScope.of(context).requestFocus(passwordFocusNode);
-              },
-              focusNode: phoneFocusNode,
-              prefixIcon: Icon(Icons.phone_outlined),
-              validator: (value) => validateMobile(value),
-              autofillHints: [AutofillHints.telephoneNumber],
-              controller: phoneController,
-              hintText: 'Phone Number',
-              textInputType: TextInputType.phone,
-            ),
-            TextInputField(
-              onEditingComplete: () {
-                FocusScope.of(context).requestFocus(confirmPasswordFocusNode);
-              },
-              obscureText: true,
-              focusNode: confirmPasswordFocusNode,
-              controller: passwordController,
-              prefixIcon: Icon(Icons.lock_outline),
-              hintText: 'Enter your password',
-              validator: (value) =>
-                  value.length < 6 ? 'Character must be 6 length' : null,
-            ),
-            TextInputField(
-              obscureText: true,
-              focusNode: passwordFocusNode,
-              controller: confirmPasswordController,
-              prefixIcon: Icon(Icons.lock_outline),
-              hintText: 'Confirm your password',
-              validator: (value) =>
-                  value.isEmpty || value != passwordController.text
-                      ? 'Password does not match'
-                      : null,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            LoginButtons(
-              onPressed: () => submit(),
-              text: 'SIGN UP',
-            ),
-            // Text('Or Continue with'),
-          ],
+          ),
         ),
       ),
     );
@@ -122,7 +130,8 @@ class _SignupScreenState extends State<SignupScreen> {
   submit() async {
     final dialog = ProgressDialog(context);
     dialog.style(
-        message: 'Please wait...', child: Center(child: SpinKitDoubleBounce()));
+        message: 'Please wait...',
+        child: Center(child: SpinKitDoubleBounce(color: Colors.green)));
     try {
       if (formKey.currentState.validate()) {
         dialog.show();
@@ -131,7 +140,6 @@ class _SignupScreenState extends State<SignupScreen> {
             emailController.text, passwordController.text);
         final userData = new Users(
             phoneNumber: phoneController.text,
-            userRole: 'user',
             userName: nameController.text,
             email: emailController.text);
         await FirestoreDatabase.saveUsersData(userData);

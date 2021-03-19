@@ -9,22 +9,16 @@ class AuthenticationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User>(
-      stream: AuthenticationService.authStateChanges(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.active) {
-          final User user = snapshot.data;
-          if (user == null) {
+        stream: AuthenticationService.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            final User user = snapshot.data;
+            if (user != null) return HomeScreen();
             return LandingScreen();
-          } else {
-            return HomeScreen();
           }
-        }
-        return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
-      },
-    );
+          return Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        });
   }
 }

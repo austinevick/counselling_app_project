@@ -78,7 +78,8 @@ class _SignInScreenState extends State<SignInScreen> {
   submit() async {
     final dialog = ProgressDialog(context);
     dialog.style(
-        message: 'Please wait...', child: Center(child: SpinKitDoubleBounce()));
+        message: 'Please wait...',
+        child: Center(child: SpinKitDoubleBounce(color: Colors.green)));
     try {
       if (formKey.currentState.validate()) {
         dialog.show();
