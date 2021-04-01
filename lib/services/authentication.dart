@@ -25,8 +25,8 @@ class AuthenticationService {
                 title: Text('Sign in failed'),
                 content: Text(e.message),
                 actions: [
-                  FlatButton(
-                    onPressed: () {},
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
                     child: Text('OK'),
                   )
                 ],
