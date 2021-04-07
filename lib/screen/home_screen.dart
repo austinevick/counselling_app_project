@@ -11,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final scrollcontroller = new ScrollController();
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {

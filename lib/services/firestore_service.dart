@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:counselling_app_project/model/job.dart';
+import 'package:counselling_app_project/model/chat.dart';
 import 'package:counselling_app_project/model/user.dart';
 import 'package:counselling_app_project/services/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
