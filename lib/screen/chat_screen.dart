@@ -27,32 +27,43 @@ class _ChatScreenState extends State<ChatScreen> {
                   }),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: TextField(
-                textCapitalization: TextCapitalization.sentences,
-                controller: messageController,
-                onChanged: (value) {
-                  setState(() {});
-                },
-                style: TextStyle(fontSize: 18),
-                cursorColor: Colors.black,
-                cursorWidth: 1,
-                decoration: InputDecoration(
-                    suffixIcon: Icon(
-                      Icons.send,
-                      color: messageController.text.isEmpty
-                          ? Colors.grey
-                          : Colors.green,
-                    ),
-                    border: InputBorder.none,
-                    hintText: 'Type message here'),
-              ),
-            ),
-          )
+          buildInputField()
         ],
       ),
     );
   }
+
+  Widget buildInputField() => Container(
+        height: 60,
+        child: Padding(
+          padding: const EdgeInsets.all(0),
+          child: Row(
+            children: [
+              IconButton(icon: Icon(Icons.image), onPressed: () {}),
+              Expanded(
+                child: TextField(
+                  textCapitalization: TextCapitalization.sentences,
+                  controller: messageController,
+                  onChanged: (value) {
+                    setState(() {});
+                  },
+                  style: TextStyle(fontSize: 18),
+                  cursorColor: Colors.black,
+                  cursorWidth: 1,
+                  decoration: InputDecoration(
+                      border: InputBorder.none, hintText: 'Type message here'),
+                ),
+              ),
+              IconButton(
+                  icon: Icon(
+                    Icons.send,
+                    color: messageController.text.isEmpty
+                        ? Colors.grey
+                        : Colors.green,
+                  ),
+                  onPressed: () {}),
+            ],
+          ),
+        ),
+      );
 }

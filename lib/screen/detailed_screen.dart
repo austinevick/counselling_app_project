@@ -34,9 +34,9 @@ class DetailScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        buildButton('Voice Call', Icons.phone, () {}),
-                        buildButton('Video Call', Icons.video_call, () {}),
-                        buildButton('Message', Icons.message, () {
+                        buildIconButton('Voice Call', Icons.phone, () {}),
+                        buildIconButton('Video Call', Icons.video_call, () {}),
+                        buildIconButton('Message', Icons.message, () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => ChatScreen()));
                         })
@@ -62,6 +62,22 @@ class DetailScreen extends StatelessWidget {
                     child: Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation'),
                   ),
+                  Spacer(),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8)),
+                        height: 50,
+                        width: double.infinity,
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Text('Schedule Appointment')),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -77,7 +93,7 @@ class DetailScreen extends StatelessWidget {
     );
   }
 
-  buildButton(String text, IconData icon, Function onPressed) => Container(
+  buildIconButton(String text, IconData icon, Function onPressed) => Container(
         decoration: BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.only(
