@@ -15,6 +15,7 @@ List<Chat> chat = [
     isMe: true,
   ),
   Chat(
+    image: 'images/img2.jpg',
     message:
         'Hello there fjfjjfjfj fjfhfhf hy ddd\nddhdhdhdyydy hhg hyh hdhdhdh',
     time: '19:00',
@@ -31,6 +32,7 @@ List<Chat> chat = [
     isMe: false,
   ),
   Chat(
+    image: 'images/img2.jpg',
     message: 'Hello there',
     time: '19:00',
     isMe: true,

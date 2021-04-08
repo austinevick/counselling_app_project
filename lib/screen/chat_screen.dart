@@ -1,4 +1,5 @@
 import 'package:counselling_app_project/model/chat.dart';
+import 'package:counselling_app_project/widget/messages.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -20,31 +21,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   itemCount: chat.length,
                   itemBuilder: (context, index) {
                     final chats = chat[index];
-                    return Align(
-                        alignment: chats.isMe
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
-                        child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.green[100],
-                                  borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(18),
-                                      topLeft: Radius.circular(18))),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(chats.message),
-                                    Text(chats.time),
-                                  ],
-                                ),
-                              ),
-                            )));
+                    return Message(
+                      chats: chats,
+                    );
                   }),
             ),
           ),
@@ -61,14 +40,11 @@ class _ChatScreenState extends State<ChatScreen> {
                 cursorColor: Colors.black,
                 cursorWidth: 1,
                 decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.send,
-                        color: messageController.text.isEmpty
-                            ? Colors.grey
-                            : Colors.green,
-                      ),
+                    suffixIcon: Icon(
+                      Icons.send,
+                      color: messageController.text.isEmpty
+                          ? Colors.grey
+                          : Colors.green,
                     ),
                     border: InputBorder.none,
                     hintText: 'Type message here'),
