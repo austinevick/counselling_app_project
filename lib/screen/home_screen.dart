@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Text('Therapists'),
             Expanded(
               child: ListView.builder(
-                // scrollDirection: Axis.horizontal,
+                itemCount: 10,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(8),

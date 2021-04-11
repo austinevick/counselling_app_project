@@ -5,7 +5,7 @@ List<Chat> chat = [
     isMe: true,
   ),
   Chat(
-    message: 'Hello therehfhfjfkfkdhdgh',
+    message: 'Hello',
     time: '19:00',
     isMe: false,
   ),
@@ -16,8 +16,7 @@ List<Chat> chat = [
   ),
   Chat(
     image: 'images/img2.jpg',
-    message:
-        'Hello there fjfjjfjfj fjfhfhf hy ddd\nddhdhdhdyydy hhg hyh hdhdhdh',
+    message: 'Hello',
     time: '19:00',
     isMe: false,
   ),
@@ -27,19 +26,18 @@ List<Chat> chat = [
     isMe: true,
   ),
   Chat(
-    message: 'Hello therehfhfjfkfkdhdgh',
+    message: 'Hello there',
     time: '19:00',
     isMe: false,
   ),
   Chat(
     image: 'images/img2.jpg',
-    message: 'Hello there',
+    message: 'Hello',
     time: '19:00',
     isMe: true,
   ),
   Chat(
-    message:
-        'Hello there fjfjjfjfj fjfhfhf hy ddd\nddhdhdhdyydy hhg hyh hdhdhdh',
+    message: 'Hello',
     time: '19:00',
     isMe: false,
   ),
@@ -49,7 +47,7 @@ List<Chat> chat = [
     isMe: true,
   ),
   Chat(
-    message: 'Hello therehfhfjfkfkdhdgh',
+    message: 'Hello',
     time: '19:00',
     isMe: false,
   ),
@@ -59,8 +57,7 @@ List<Chat> chat = [
     isMe: true,
   ),
   Chat(
-    message:
-        'Hello there fjfjjfjfj fjfhfhf hy ddd\nddhdhdhdyydy hhg hyh hdhdhdh',
+    message: 'Hello',
     time: '19:00',
     isMe: false,
   ),
@@ -70,7 +67,7 @@ List<Chat> chat = [
     isMe: true,
   ),
   Chat(
-    message: 'Hello therehfhfjfkfkdhdgh',
+    message: 'Hello',
     time: '19:00',
     isMe: false,
   ),
@@ -80,8 +77,7 @@ List<Chat> chat = [
     isMe: true,
   ),
   Chat(
-    message:
-        'Hello there fjfjjfjfj fjfhfhf hy ddd\nddhdhdhdyydy hhg hyh hdhdhdh',
+    message: 'Hello',
     time: '19:00',
     isMe: false,
   ),
@@ -91,7 +87,7 @@ List<Chat> chat = [
     isMe: true,
   ),
   Chat(
-    message: 'Hello therehfhfjfkfkdhdgh',
+    message: 'Hello',
     time: '19:00',
     isMe: false,
   ),
@@ -101,8 +97,7 @@ List<Chat> chat = [
     isMe: true,
   ),
   Chat(
-    message:
-        'Hello there fjfjjfjfj fjfhfhf hy ddd\nddhdhdhdyydy hhg hyh hdhdhdh',
+    message: 'Hello',
     time: '19:00',
     isMe: false,
   ),

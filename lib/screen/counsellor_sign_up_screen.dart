@@ -31,7 +31,10 @@ class _CounsellorSignUpScreenState extends State<CounsellorSignUpScreen> {
                 hintText: 'Nationality',
               ),
               TextInputField(
-                hintText: '',
+                hintText: 'Occupation',
+              ),
+              TextInputField(
+                hintText: 'Years of experience',
               ),
             ],
           )),

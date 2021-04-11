@@ -1,6 +1,7 @@
 import 'package:counselling_app_project/model/chat.dart';
 import 'package:counselling_app_project/widget/messages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: buildAppBar(),
       body: Column(
         children: [
           Expanded(
@@ -32,6 +33,34 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
+
+  Widget buildAppBar() => PreferredSize(
+      child: SafeArea(
+        child: Container(
+          height: 55,
+          child: Row(
+            children: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                    CircleAvatar(
+                      radius: 18,
+                      backgroundImage: AssetImage('images/img2.jpg'),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+          color: Theme.of(context).appBarTheme.backgroundColor,
+        ),
+      ),
+      preferredSize: Size(60, 60));
 
   Widget buildInputField() => Container(
         height: 60,
