@@ -36,6 +36,19 @@ class _CounsellorSignUpScreenState extends State<CounsellorSignUpScreen> {
               TextInputField(
                 hintText: 'Years of experience',
               ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(8)),
+                    height: 50,
+                    width: double.infinity,
+                    child: TextButton(onPressed: () {}, child: Text('Submit')),
+                  ),
+                ),
+              )
             ],
           )),
         ),
