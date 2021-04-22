@@ -16,20 +16,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          actions: [
-            TextButton(
+        appBar: AppBar(elevation: 0, actions: [
+          TextButton(
               child: Text('Sign Out'),
-              onPressed: () => AuthenticationService.signOut(),
-            )
-          ],
-        ),
+              onPressed: () => AuthenticationService.signOut())
+        ]),
         body: Column(
           children: [
             SearchBarWidget(),
             Text('Therapists'),
-            Expanded(
+            new Expanded(
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
@@ -41,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         selected: isSelected,
                         onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (ctx) => DetailScreen())),
+                                builder: (ctx) => new DetailScreen())),
                         subtitle: Text('Cardiologist, University of Ibadan'),
                         title: Text('Christiana Arizona'),
                         leading: Container(
