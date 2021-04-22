@@ -81,7 +81,7 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
                             passwordController.text.isNotEmpty
                         ? () => submit()
                         : null),
-                FlatButton(
+                TextButton(
                     onPressed: () {
                       setState(() {
                         formType = formType == EmailSignInFormType.signIn

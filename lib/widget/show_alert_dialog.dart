@@ -38,13 +38,13 @@ Future<bool> showAlertDialog(BuildContext context,
             content: Text(content),
             actions: [
               if (cancelActionText != null)
-                FlatButton(
+                TextButton(
                   child: Text(cancelActionText),
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
                 ),
-              FlatButton(
+              TextButton(
                 child: Text(defaultActionText),
                 onPressed: () {
                   Navigator.of(context).pop(true);

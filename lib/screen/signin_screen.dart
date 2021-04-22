@@ -59,7 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: FlatButton(
+              child: TextButton(
                 child: Text('Forgot Password'),
                 onPressed: () {},
               ),

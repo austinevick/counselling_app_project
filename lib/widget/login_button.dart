@@ -18,7 +18,7 @@ class LoginButtons extends StatelessWidget {
             decoration: BoxDecoration(
                 color: color ?? Color(0xff209f84),
                 borderRadius: BorderRadius.circular(10)),
-            child: FlatButton(
+            child: TextButton(
                 onPressed: onPressed,
                 child: Text(
                   text,

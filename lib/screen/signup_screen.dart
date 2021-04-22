@@ -5,7 +5,6 @@ import 'package:counselling_app_project/widget/exception_error_widget.dart';
 import 'package:counselling_app_project/widget/login_button.dart';
 import 'package:counselling_app_project/widget/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:progress_dialog/progress_dialog.dart';
