@@ -7,9 +7,6 @@ class AuthenticationService {
 
   static User get currentUser => _auth.currentUser;
 
-  ///*******************************************///
-  ///*******************************************///
-
   static Future<User> signInWithEmailAndPassword(
       String email, String password, BuildContext context) async {
     UserCredential userCredential;
@@ -34,18 +31,12 @@ class AuthenticationService {
     return userCredential.user;
   }
 
-  ///*******************************************///
-  ///*******************************************///
-
   static Future<User> createUserWithEmailAndPassword(
       String email, String password) async {
     final userCredential = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
     return userCredential.user;
   }
-
-  ///*******************************************///
-  ///*******************************************///
 
   static Future<User> signInWithGoogle() async {
     final googleSign = GoogleSignIn();
@@ -69,9 +60,6 @@ class AuthenticationService {
     }
   }
 
-  ///*******************************************///
-  ///*******************************************///
-
   static Future<void> signInAnonymously() async {
     try {
       UserCredential userCredentials = await _auth.signInAnonymously();
@@ -82,17 +70,11 @@ class AuthenticationService {
     }
   }
 
-  ///*******************************************///
-  ///*******************************************///
-
   static Future<void> signOut() async {
     final googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
     await _auth.signOut();
   }
-
-  ///*******************************************///
-  ///*******************************************///
 
   static Stream<User> authStateChanges() {
     return _auth.authStateChanges();

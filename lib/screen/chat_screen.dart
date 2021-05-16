@@ -12,24 +12,26 @@ class _ChatScreenState extends State<ChatScreen> {
   final messageController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              child: ListView.builder(
-                  itemCount: chat.length,
-                  itemBuilder: (context, index) {
-                    final chats = chat[index];
-                    return Message(
-                      chats: chats,
-                    );
-                  }),
+    return SafeArea(
+      child: Scaffold(
+        appBar: buildAppBar(),
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                child: ListView.builder(
+                    itemCount: chat.length,
+                    itemBuilder: (context, index) {
+                      final chats = chat[index];
+                      return Message(
+                        chats: chats,
+                      );
+                    }),
+              ),
             ),
-          ),
-          buildInputField()
-        ],
+            buildInputField()
+          ],
+        ),
       ),
     );
   }
