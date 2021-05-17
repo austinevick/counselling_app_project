@@ -7,10 +7,12 @@ class Therapist {
   final String nationality;
   final String specialty;
   final String imageUrl;
+  final String gender;
   final Timestamp dateJoined;
   final String experienceLength;
   Therapist({
     this.dateJoined,
+    this.gender,
     this.imageUrl,
     this.specialty,
     this.fullName,
@@ -22,6 +24,7 @@ class Therapist {
 
   Map<String, dynamic> toMap() {
     return {
+      'gender': gender,
       'fullName': fullName,
       'specialty': specialty,
       'imageUrl': imageUrl,
@@ -36,6 +39,7 @@ class Therapist {
   factory Therapist.fromMap(Map<String, dynamic> map) {
     return Therapist(
       fullName: map['fullName'],
+      gender: map['gender'],
       imageUrl: map['imageUrl'],
       specialty: map['specialty'],
       dateJoined: map['dateJoined'],

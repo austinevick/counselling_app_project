@@ -13,6 +13,12 @@ class FirestoreDatabase {
     await ref.doc(user.uid).set(userData.toMap());
   }
 
+  static saveTherapistsData(Therapist therapist) async {
+    final path = 'Therapist';
+    final ref = FirebaseFirestore.instance.collection(path);
+    await ref.doc(user.uid).set(therapist.toMap());
+  }
+
   static Stream<List<Therapist>> fetchTherapists() {
     final userRef = FirebaseFirestore.instance.collection('Therapists');
     return userRef.snapshots().map(

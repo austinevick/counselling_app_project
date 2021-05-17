@@ -37,88 +37,90 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Create Account'),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(),
-                TextInputField(
-                  onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(emailFocusNode);
-                  },
-                  controller: nameController,
-                  prefixIcon: Icon(Icons.person_outline),
-                  hintText: 'Enter your full name',
-                  validator: (value) =>
-                      value.isEmpty ? 'Field must not be empty' : null,
-                ),
-                TextInputField(
-                  onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(phoneFocusNode);
-                  },
-                  focusNode: emailFocusNode,
-                  textInputType: TextInputType.emailAddress,
-                  controller: emailController,
-                  prefixIcon: Icon(Icons.email_outlined),
-                  hintText: 'Enter your email',
-                  validator: (value) =>
-                      !value.contains('@') && !value.contains('.')
-                          ? 'Please enter a valid email'
-                          : null,
-                ),
-                TextInputField(
-                  onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(passwordFocusNode);
-                  },
-                  focusNode: phoneFocusNode,
-                  prefixIcon: Icon(Icons.phone_outlined),
-                  validator: (value) => validateMobile(value),
-                  autofillHints: [AutofillHints.telephoneNumber],
-                  controller: phoneController,
-                  hintText: 'Phone Number',
-                  textInputType: TextInputType.phone,
-                ),
-                TextInputField(
-                  onEditingComplete: () {
-                    FocusScope.of(context)
-                        .requestFocus(confirmPasswordFocusNode);
-                  },
-                  obscureText: true,
-                  focusNode: confirmPasswordFocusNode,
-                  controller: passwordController,
-                  prefixIcon: Icon(Icons.lock_outline),
-                  hintText: 'Enter your password',
-                  validator: (value) =>
-                      value.length < 6 ? 'Character must be 6 length' : null,
-                ),
-                TextInputField(
-                  obscureText: true,
-                  focusNode: passwordFocusNode,
-                  controller: confirmPasswordController,
-                  prefixIcon: Icon(Icons.lock_outline),
-                  hintText: 'Confirm your password',
-                  validator: (value) =>
-                      value.isEmpty || value != passwordController.text
-                          ? 'Password does not match'
-                          : null,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                LoginButtons(
-                  onPressed: () => submit(),
-                  text: 'SIGN UP',
-                ),
-                // Text('Or Continue with'),
-              ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Create Account'),
+        ),
+        body: Center(
+          child: SingleChildScrollView(
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(),
+                  TextInputField(
+                    onEditingComplete: () {
+                      FocusScope.of(context).requestFocus(emailFocusNode);
+                    },
+                    controller: nameController,
+                    prefixIcon: Icon(Icons.person_outline),
+                    hintText: 'Enter your full name',
+                    validator: (value) =>
+                        value.isEmpty ? 'Field must not be empty' : null,
+                  ),
+                  TextInputField(
+                    onEditingComplete: () {
+                      FocusScope.of(context).requestFocus(phoneFocusNode);
+                    },
+                    focusNode: emailFocusNode,
+                    textInputType: TextInputType.emailAddress,
+                    controller: emailController,
+                    prefixIcon: Icon(Icons.email_outlined),
+                    hintText: 'Enter your email',
+                    validator: (value) =>
+                        !value.contains('@') && !value.contains('.')
+                            ? 'Please enter a valid email'
+                            : null,
+                  ),
+                  TextInputField(
+                    onEditingComplete: () {
+                      FocusScope.of(context).requestFocus(passwordFocusNode);
+                    },
+                    focusNode: phoneFocusNode,
+                    prefixIcon: Icon(Icons.phone_outlined),
+                    validator: (value) => validateMobile(value),
+                    autofillHints: [AutofillHints.telephoneNumber],
+                    controller: phoneController,
+                    hintText: 'Phone Number',
+                    textInputType: TextInputType.phone,
+                  ),
+                  TextInputField(
+                    onEditingComplete: () {
+                      FocusScope.of(context)
+                          .requestFocus(confirmPasswordFocusNode);
+                    },
+                    obscureText: true,
+                    focusNode: confirmPasswordFocusNode,
+                    controller: passwordController,
+                    prefixIcon: Icon(Icons.lock_outline),
+                    hintText: 'Enter your password',
+                    validator: (value) =>
+                        value.length < 6 ? 'Character must be 6 length' : null,
+                  ),
+                  TextInputField(
+                    obscureText: true,
+                    focusNode: passwordFocusNode,
+                    controller: confirmPasswordController,
+                    prefixIcon: Icon(Icons.lock_outline),
+                    hintText: 'Confirm your password',
+                    validator: (value) =>
+                        value.isEmpty || value != passwordController.text
+                            ? 'Password does not match'
+                            : null,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  LoginButtons(
+                    onPressed: () => submit(),
+                    text: 'SIGN UP',
+                  ),
+                  // Text('Or Continue with'),
+                ],
+              ),
             ),
           ),
         ),

@@ -37,7 +37,7 @@ class _LandingScreenState extends State<LandingScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'COUNSELLO',
+            'WeCare Centre',
             style: TextStyle(
               fontSize: 35,
             ),
@@ -58,17 +58,6 @@ class _LandingScreenState extends State<LandingScreen>
                 height: 300,
                 width: 300,
               ),
-            ),
-          ),
-          SlideTransition(
-            position: Tween(
-              begin: Offset(0, 1),
-              end: Offset(0, 0),
-            ).animate(_animationController),
-            child: LoginButtons(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) => CounsellorSignUpScreen())),
-              text: 'REGISTER AS A COUNSELLOR',
             ),
           ),
           SlideTransition(

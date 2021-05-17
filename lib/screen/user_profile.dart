@@ -1,6 +1,8 @@
 import 'package:counselling_app_project/services/authentication.dart';
 import 'package:flutter/material.dart';
 
+import 'counsellor_sign_up_screen.dart';
+
 class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,16 @@ class UserProfile extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.logout),
               title: Text('Log Out'),
-              onTap: () => AuthenticationService.signOut(),
+              onTap: () {
+                AuthenticationService.signOut();
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.local_hospital),
+              title: Text('Become a therapist'),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => CounsellorSignUpScreen())),
             )
           ],
         ),
