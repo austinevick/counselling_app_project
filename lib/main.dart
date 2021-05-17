@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Counsel and therapy',
         theme: ThemeData(
+            accentColor: Colors.green,
             primaryColor: Colors.green,
             appBarTheme: AppBarTheme(color: Colors.green)),
         home: AuthenticationScreen());

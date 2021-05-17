@@ -1,5 +1,6 @@
-import 'package:counselling_app_project/screen/chat_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'message_screen.dart';
 
 class DetailScreen extends StatelessWidget {
   @override
@@ -45,7 +46,7 @@ class DetailScreen extends StatelessWidget {
                               'Video Call', Icons.video_call, () {}),
                           buildIconButton('Message', Icons.message, () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (ctx) => ChatScreen()));
+                                builder: (ctx) => MessageScreen()));
                           })
                         ],
                       ),

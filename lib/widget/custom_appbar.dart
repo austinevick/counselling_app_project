@@ -1,6 +1,5 @@
 import 'package:counselling_app_project/screen/chats_screen.dart';
 import 'package:counselling_app_project/screen/user_profile.dart';
-import 'package:counselling_app_project/services/authentication.dart';
 import 'package:counselling_app_project/widget/search_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,6 @@ class CustomAppBar extends StatelessWidget {
         child: Row(
           children: [
             GestureDetector(
-              onDoubleTap: () => AuthenticationService.signOut(),
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -29,7 +27,7 @@ class CustomAppBar extends StatelessWidget {
             ),
             Expanded(child: SearchBarWidget()),
             IconButton(
-                icon: Icon(Icons.message, color: Colors.white),
+                icon: Icon(Icons.chat, color: Colors.white),
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(

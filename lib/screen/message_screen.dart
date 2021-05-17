@@ -3,12 +3,12 @@ import 'package:counselling_app_project/widget/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ChatScreen extends StatefulWidget {
+class MessageScreen extends StatefulWidget {
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _MessageScreenState createState() => _MessageScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _MessageScreenState extends State<MessageScreen> {
   final messageController = new TextEditingController();
   @override
   Widget build(BuildContext context) {

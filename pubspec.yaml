@@ -40,6 +40,7 @@ dependencies:
   flutter_zoom_drawer: ^2.0.0
   intl: ^0.16.1
   firebase_auth_web: ^0.3.2+6
+  sliding_up_panel: ^2.0.0+1
 
 
 
