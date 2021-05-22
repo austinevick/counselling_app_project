@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:counselling_app_project/model/therapist.dart';
 import 'package:counselling_app_project/services/firestore_service.dart';
 import 'package:counselling_app_project/widget/exception_error_widget.dart';
+import 'package:counselling_app_project/widget/progress_dialog.dart';
 import 'package:counselling_app_project/widget/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 
 class CounsellorSignUpScreen extends StatefulWidget {
   @override

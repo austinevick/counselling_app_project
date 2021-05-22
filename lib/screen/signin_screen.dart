@@ -1,11 +1,11 @@
 import 'package:counselling_app_project/services/authentication.dart';
 import 'package:counselling_app_project/widget/exception_error_widget.dart';
 import 'package:counselling_app_project/widget/login_button.dart';
+import 'package:counselling_app_project/widget/progress_dialog.dart';
 import 'package:counselling_app_project/widget/textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:progress_dialog/progress_dialog.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -29,47 +29,51 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Login Account'),
-      ),
-      body: Form(
-        key: formKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextInputField(
-              textInputType: TextInputType.emailAddress,
-              controller: emailController,
-              prefixIcon: Icon(Icons.email_outlined),
-              hintText: 'Enter your email',
-              validator: (value) => !value.contains('@') && !value.contains('.')
-                  ? 'Please enter a valid email'
-                  : null,
-            ),
-
-            TextInputField(
-              obscureText: true,
-              controller: passwordController,
-              prefixIcon: Icon(Icons.lock_outline),
-              hintText: 'Enter your password',
-              validator: (value) =>
-                  value.length < 6 ? 'Character must be 6 length' : null,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                child: Text('Forgot Password'),
-                onPressed: () {},
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Login Account'),
+        ),
+        body: Form(
+          key: formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextInputField(
+                textInputType: TextInputType.emailAddress,
+                controller: emailController,
+                prefixIcon: Icon(Icons.email_outlined),
+                hintText: 'Enter your email',
+                validator: (value) =>
+                    !value.contains('@') && !value.contains('.')
+                        ? 'Please enter a valid email'
+                        : null,
               ),
-            ),
-            LoginButtons(
-              onPressed: () => submit(),
-              text: 'LOGIN',
-            ),
-            // Text('Or Continue with'),
-          ],
+
+              TextInputField(
+                obscureText: true,
+                controller: passwordController,
+                prefixIcon: Icon(Icons.lock_outline),
+                hintText: 'Enter your password',
+                validator: (value) => value.length < 6
+                    ? 'Character must be at least 6 length'
+                    : null,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  child: Text('Forgot Password'),
+                  onPressed: () {},
+                ),
+              ),
+              LoginButtons(
+                onPressed: () => submit(),
+                text: 'LOGIN',
+              ),
+              // Text('Or Continue with'),
+            ],
+          ),
         ),
       ),
     );
