@@ -1,4 +1,6 @@
 # counselling_app_project
+This is a medical application project which am still working on. It allows a user (patient) to connect with a medical professional online.
+More update soon
 
 A new Flutter project.
 
