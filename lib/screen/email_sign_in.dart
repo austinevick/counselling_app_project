@@ -48,7 +48,7 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
                   },
                   focusNode: emailFocusNode,
                   textInputAction: TextInputAction.next,
-                  validator: (value) => !value.contains('@')
+                  validator: (value) => !value!.contains('@')
                       ? 'Please provide a valid email'
                       : null,
                   controller: emailController,
@@ -64,7 +64,7 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
                   controller: passwordController,
                   style: TextStyle(fontSize: 22),
                   obscureText: true,
-                  validator: (value) => value.length < 6
+                  validator: (value) => value!.length < 6
                       ? 'Character must be at least 6 length'
                       : null,
                   decoration: InputDecoration(hintText: 'Password'),

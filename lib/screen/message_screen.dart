@@ -14,7 +14,7 @@ class _MessageScreenState extends State<MessageScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: buildAppBar(),
+        appBar: buildAppBar() as PreferredSizeWidget?,
         body: Column(
           children: [
             Expanded(

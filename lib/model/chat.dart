@@ -1,4 +1,4 @@
-List<Chat> chat = [
+List<Chat/*!*/> chat = [
   Chat(
     message: 'Hello there',
     time: '19:00',
@@ -104,9 +104,9 @@ List<Chat> chat = [
 ];
 
 class Chat {
-  final String message;
-  final String image;
-  final String time;
-  final bool isMe;
+  final String? message;
+  final String? image;
+  final String? time;
+  final bool? isMe;
   Chat({this.image, this.isMe, this.message, this.time});
 }

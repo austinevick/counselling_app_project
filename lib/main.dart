@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         statusBarColor: Colors.green[600]));
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Counsel and therapy',
+        title: 'WeCare',
         theme: ThemeData(
             accentColor: Colors.green,
             primaryColor: Colors.green,
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
           child: ListView.builder(
               itemCount: tasks.length,
               itemBuilder: (c, i) {
-                return Card(child: Text(tasks[i].name));
+                return Card(child: Text(tasks[i].name!));
               }),
         ),
         Expanded(
@@ -74,8 +74,8 @@ List<Task> tasks = [
 ];
 
 class Task {
-  final String name;
-  final bool isDone;
+  final String? name;
+  final bool? isDone;
 
   Task({this.name, this.isDone});
 }

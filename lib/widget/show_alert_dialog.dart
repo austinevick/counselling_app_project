@@ -3,17 +3,17 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Future<bool> showAlertDialog(BuildContext context,
-    {@required String title,
-    @required String content,
-    String cancelActionText,
-    @required String defaultActionText}) {
+Future<bool?> showAlertDialog(BuildContext context,
+    {required String? title,
+    required String? content,
+    String? cancelActionText,
+    required String defaultActionText}) {
   if (Platform.isIOS) {
     return showCupertinoDialog(
         context: context,
         builder: (context) => CupertinoAlertDialog(
-              title: Text(title),
-              content: Text(content),
+              title: Text(title!),
+              content: Text(content!),
               actions: [
                 if (cancelActionText != null)
                   CupertinoDialogAction(
@@ -34,8 +34,8 @@ Future<bool> showAlertDialog(BuildContext context,
   return showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-            title: Text(title),
-            content: Text(content),
+            title: Text(title!),
+            content: Text(content!),
             actions: [
               if (cancelActionText != null)
                 TextButton(

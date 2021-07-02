@@ -23,7 +23,8 @@ class _CounsellorSignUpScreenState extends State<CounsellorSignUpScreen> {
   final expertise = TextEditingController();
   final specialty = TextEditingController();
   var gender = ['Male', 'Female', 'Other'];
-  var initialValue = 'Male';
+  String? initialValue = 'Male';
+  Therapist? therapist;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,30 +41,40 @@ class _CounsellorSignUpScreenState extends State<CounsellorSignUpScreen> {
                     children: [
                       TextInputField(
                         controller: fullName,
-                        hintText: 'Full name',
+                        hintText: 'Full name*',
+                        textCapitalization: TextCapitalization.words,
+                        validator: (value) => value.isEmpty ? 'Required' : null,
                       ),
                       TextInputField(
                         controller: email,
-                        hintText: 'Email',
+                        hintText: 'Email Address*',
+                        textCapitalization: TextCapitalization.none,
+                        textInputType: TextInputType.emailAddress,
+                        validator: (value) => !value.contains('@')
+                            ? 'Please provide a valid email'
+                            : null,
                       ),
                       TextInputField(
                         controller: phoneNumber,
-                        hintText: 'Phone number',
+                        hintText: 'Phone number*',
+                        textInputType: TextInputType.phone,
+                        validator: (value) => validateMobile(value),
                       ),
                       TextInputField(
                         validator: (value) => value == null ? 'Required' : null,
                         controller: nationality,
-                        hintText: 'Nationality',
+                        hintText: 'Nationality*',
                       ),
                       TextInputField(
                         validator: (value) => value == null ? 'Required' : null,
                         controller: specialty,
-                        hintText: 'Specialty',
+                        hintText: 'Specialty (e.g Dermatologist)*',
                       ),
                       TextInputField(
                         validator: (value) => value == null ? 'Required' : null,
                         controller: expertise,
-                        hintText: 'Years of experience',
+                        textInputType: TextInputType.number,
+                        hintText: 'Years of experience*',
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),
@@ -73,13 +84,13 @@ class _CounsellorSignUpScreenState extends State<CounsellorSignUpScreen> {
                         padding: const EdgeInsets.all(4.0),
                         child: DropdownButtonFormField(
                           value: initialValue,
-                          onChanged: (value) =>
+                          onChanged: (dynamic value) =>
                               setState(() => initialValue = value),
                           items: gender
                               .map((items) => DropdownMenuItem(
                                   value: items, child: Text(items)))
                               .toList(),
-                          validator: (value) => value == null
+                          validator: (dynamic value) => value == null
                               ? 'Please fill in your gender'
                               : null,
                         ),
@@ -111,7 +122,7 @@ class _CounsellorSignUpScreenState extends State<CounsellorSignUpScreen> {
     );
   }
 
-  String validateMobile(String value) {
+  String? validateMobile(String value) {
     String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
     RegExp regExp = new RegExp(pattern);
     if (value.length == 0) {
@@ -128,10 +139,10 @@ class _CounsellorSignUpScreenState extends State<CounsellorSignUpScreen> {
         message: 'Please wait...',
         child: Center(child: SpinKitDoubleBounce(color: Colors.green)));
     try {
-      if (formKey.currentState.validate()) {
+      if (formKey.currentState!.validate()) {
         dialog.show();
-        formKey.currentState.save();
-        final therapist = new Therapist(
+        formKey.currentState!.save();
+        therapist = new Therapist(
           fullName: fullName.text,
           emailAddress: email.text,
           phoneNumber: phoneNumber.text,
@@ -140,10 +151,14 @@ class _CounsellorSignUpScreenState extends State<CounsellorSignUpScreen> {
           dateJoined: Timestamp.now(),
           experienceLength: expertise.text,
         );
-        FirestoreDatabase.saveTherapistsData(therapist);
+        await FirestoreDatabase.saveTherapistsData(therapist!);
+      }
+      if (therapist != null) {
+        Navigator.of(context).pop();
       }
     } on FirebaseAuthException catch (e) {
-      showExceptionAlertDialog(context, title: 'Sign in failed', exception: e);
+      showExceptionAlertDialog(context,
+          title: 'Registration failed please try again', exception: e);
     } finally {
       dialog.hide();
     }

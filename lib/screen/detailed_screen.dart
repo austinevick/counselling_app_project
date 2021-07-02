@@ -109,7 +109,7 @@ class DetailScreen extends StatelessWidget {
                 bottomRight: Radius.circular(18),
                 topLeft: Radius.circular(18))),
         child: TextButton.icon(
-            onPressed: onPressed,
+            onPressed: onPressed as void Function()?,
             icon: Icon(
               icon,
               color: Colors.white,

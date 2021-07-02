@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (snapshot.data == null)
                         return Center(child: CircularProgressIndicator());
                       return ListView.builder(
-                        itemCount: snapshot.data.length,
+                        itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: EdgeInsets.all(8),
@@ -47,9 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     MaterialPageRoute(
                                         builder: (ctx) => new DetailScreen())),
                                 subtitle:
-                                    Text(snapshot.data[index].specialty ?? ''),
+                                    Text(snapshot.data![index].specialty ?? ''),
                                 title:
-                                    Text(snapshot.data[index].fullName ?? ''),
+                                    Text(snapshot.data![index].fullName ?? ''),
                                 leading: Container(
                                     color: Colors.pink,
                                     child: Image.asset(

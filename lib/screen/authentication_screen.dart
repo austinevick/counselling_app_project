@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 class AuthenticationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User>(
+    return StreamBuilder<User?>(
         stream: AuthenticationService.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
-            final User user = snapshot.data;
+            final User? user = snapshot.data;
             if (user != null) return HomeScreen();
             return LandingScreen();
           }

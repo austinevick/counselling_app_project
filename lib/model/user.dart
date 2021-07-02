@@ -1,7 +1,7 @@
 class Users {
-  final String userName;
-  final String phoneNumber;
-  final String email;
+  final String? userName;
+  final String? phoneNumber;
+  final String? email;
   Users({
     this.userName,
     this.phoneNumber,
@@ -17,8 +17,6 @@ class Users {
   }
 
   factory Users.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
     return Users(
       userName: map['userName'],
       phoneNumber: map['phoneNumber'],

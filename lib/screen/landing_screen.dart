@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:counselling_app_project/screen/counsellor_sign_up_screen.dart';
 import 'package:counselling_app_project/screen/signin_screen.dart';
 import 'package:counselling_app_project/screen/signup_screen.dart';
 import 'package:counselling_app_project/widget/login_button.dart';
@@ -13,7 +12,7 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   @override
   void initState() {

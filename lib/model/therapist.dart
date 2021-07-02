@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Therapist {
-  final String fullName;
-  final String emailAddress;
-  final String phoneNumber;
-  final String nationality;
-  final String specialty;
-  final String imageUrl;
-  final String gender;
-  final Timestamp dateJoined;
-  final String experienceLength;
+  final String? fullName;
+  final String? emailAddress;
+  final String? phoneNumber;
+  final String? nationality;
+  final String? specialty;
+  final String? imageUrl;
+  final String? gender;
+  final Timestamp? dateJoined;
+  final String? experienceLength;
   Therapist({
     this.dateJoined,
     this.gender,
@@ -22,7 +22,7 @@ class Therapist {
     this.experienceLength,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String?, dynamic> toMap() {
     return {
       'gender': gender,
       'fullName': fullName,

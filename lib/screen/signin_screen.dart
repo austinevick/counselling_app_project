@@ -19,7 +19,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final emailFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
   bool isLoading = false;
-  User user;
+  User? user;
   @override
   void dispose() {
     emailController.dispose();
@@ -85,7 +85,7 @@ class _SignInScreenState extends State<SignInScreen> {
         message: 'Please wait...',
         child: Center(child: SpinKitDoubleBounce(color: Colors.green)));
     try {
-      if (formKey.currentState.validate()) {
+      if (formKey.currentState!.validate()) {
         dialog.show();
         user = await AuthenticationService.signInWithEmailAndPassword(
             emailController.text, passwordController.text, context);

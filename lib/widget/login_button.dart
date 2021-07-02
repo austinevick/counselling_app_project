@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LoginButtons extends StatelessWidget {
-  final String text;
-  final Function onPressed;
-  final Color color;
+  final String? text;
+  final Function? onPressed;
+  final Color? color;
 
-  const LoginButtons({Key key, this.color, this.text, this.onPressed})
+  const LoginButtons({Key? key, this.color, this.text, this.onPressed})
       : super(key: key);
 
   @override
@@ -19,9 +19,9 @@ class LoginButtons extends StatelessWidget {
                 color: color ?? Color(0xff209f84),
                 borderRadius: BorderRadius.circular(10)),
             child: TextButton(
-                onPressed: onPressed,
+                onPressed: onPressed as void Function()?,
                 child: Text(
-                  text,
+                  text!,
                   style: TextStyle(color: Colors.white),
                 ))));
   }

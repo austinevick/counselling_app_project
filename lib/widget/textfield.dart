@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 
 class TextInputField extends StatelessWidget {
-  final Function onEditingComplete;
+  final Function? onEditingComplete;
   final int maxLines;
-  final Function(String) onChanged;
-  final Function(String) validator;
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  final String hintText;
-  final TextInputAction textInputAction;
+  final Function(String)? onChanged;
+  final Function(String)? validator;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final String? hintText;
+  final TextInputAction? textInputAction;
   final bool obscureText;
-  final Widget icon;
-  final TextInputType textInputType;
+  final Widget? icon;
+  final TextInputType? textInputType;
   final bool readOnly;
-  final Function onTap;
-  final Iterable<String> autofillHints;
-  final Widget prefixIcon;
+  final Function? onTap;
+  final TextCapitalization textCapitalization;
+  final Iterable<String>? autofillHints;
+  final Widget? prefixIcon;
 
   const TextInputField(
-      {Key key,
+      {Key? key,
       this.onEditingComplete,
       this.prefixIcon,
       this.maxLines = 1,
       this.textInputType,
+      this.textCapitalization = TextCapitalization.sentences,
       this.autofillHints,
       this.onChanged,
       this.onTap,
@@ -42,8 +44,9 @@ class TextInputField extends StatelessWidget {
       padding: const EdgeInsets.all(6.0),
       child: TextFormField(
         autofillHints: autofillHints,
-        onTap: onTap,
+        onTap: onTap as void Function()?,
         readOnly: readOnly,
+        textCapitalization: textCapitalization,
         keyboardType: textInputType,
         maxLines: maxLines,
         cursorColor: Colors.black,
@@ -51,7 +54,7 @@ class TextInputField extends StatelessWidget {
         style: TextStyle(
           fontSize: 15,
         ),
-        onEditingComplete: onEditingComplete,
+        onEditingComplete: onEditingComplete as void Function()?,
         focusNode: focusNode,
         decoration: InputDecoration(
             prefixIcon: prefixIcon,
@@ -65,7 +68,7 @@ class TextInputField extends StatelessWidget {
         controller: controller,
         onChanged: onChanged,
         textInputAction: textInputAction,
-        validator: validator,
+        validator: validator as String? Function(String?)?,
       ),
     );
   }

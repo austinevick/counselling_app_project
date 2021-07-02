@@ -5,11 +5,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthenticationService {
   static final _auth = FirebaseAuth.instance;
 
-  static User get currentUser => _auth.currentUser;
+  static User? get currentUser => _auth.currentUser;
 
-  static Future<User> signInWithEmailAndPassword(
+  static Future<User?> signInWithEmailAndPassword(
       String email, String password, BuildContext context) async {
-    UserCredential userCredential;
+    late UserCredential userCredential;
     try {
       userCredential = await _auth.signInWithCredential(
           EmailAuthProvider.credential(email: email, password: password));
@@ -19,7 +19,7 @@ class AuthenticationService {
           context: context,
           builder: (ctx) => AlertDialog(
                 title: Text('Sign in failed'),
-                content: Text(e.message),
+                content: Text(e.message!),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
@@ -31,14 +31,14 @@ class AuthenticationService {
     return userCredential.user;
   }
 
-  static Future<User> createUserWithEmailAndPassword(
+  static Future<User?> createUserWithEmailAndPassword(
       String email, String password) async {
     final userCredential = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
     return userCredential.user;
   }
 
-  static Future<User> signInWithGoogle() async {
+  static Future<User?> signInWithGoogle() async {
     final googleSign = GoogleSignIn();
     final googleUser = await googleSign.signIn();
     if (googleUser != null) {
@@ -60,10 +60,9 @@ class AuthenticationService {
     }
   }
 
-  static Future<void> signInAnonymously() async {
+  static Future signInAnonymously() async {
     try {
-      UserCredential userCredentials = await _auth.signInAnonymously();
-      print(userCredentials);
+      UserCredential? userCredentials = await _auth.signInAnonymously();
       return userCredentials.user;
     } catch (e) {
       print(e.toString);
@@ -76,7 +75,7 @@ class AuthenticationService {
     await _auth.signOut();
   }
 
-  static Stream<User> authStateChanges() {
+  static Stream<User?> authStateChanges() {
     return _auth.authStateChanges();
   }
 }

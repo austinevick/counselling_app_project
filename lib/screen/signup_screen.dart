@@ -25,7 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final passwordFocusNode = FocusNode();
   final confirmPasswordFocusNode = FocusNode();
   final phoneFocusNode = FocusNode();
-  User user;
+  User? user;
   @override
   void dispose() {
     emailController.dispose();
@@ -134,9 +134,9 @@ class _SignupScreenState extends State<SignupScreen> {
         message: 'Please wait...',
         child: Center(child: SpinKitDoubleBounce(color: Colors.green)));
     try {
-      if (formKey.currentState.validate()) {
+      if (formKey.currentState!.validate()) {
         dialog.show();
-        formKey.currentState.save();
+        formKey.currentState!.save();
         user = await AuthenticationService.createUserWithEmailAndPassword(
             emailController.text, passwordController.text);
         final userData = new Users(
@@ -155,7 +155,7 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  String validateMobile(String value) {
+  String? validateMobile(String value) {
     String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
     RegExp regExp = new RegExp(pattern);
     if (value.length == 0) {
